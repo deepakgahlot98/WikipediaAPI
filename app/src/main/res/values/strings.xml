@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Wikipedia API</string>
+
+    <string name="text_hint">Enter Text To Search</string>
 </resources>
