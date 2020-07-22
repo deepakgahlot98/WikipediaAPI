@@ -15,14 +15,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
-        <androidx.appcompat.widget.AppCompatEditText
+        <EditText
             android:id="@+id/et_search"
             android:layout_width="match_parent"
             android:layout_height="@dimen/default_height"
             android:background="@color/containerBackground"
             android:hint="@string/text_hint"
             android:maxLines="1"
+            android:inputType="text"
+            android:imeOptions="actionDone"
             android:textColor="@color/textColor"
             android:textColorHint="@color/textHintColor"
             android:textSize="20sp" />
@@ -41,7 +42,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

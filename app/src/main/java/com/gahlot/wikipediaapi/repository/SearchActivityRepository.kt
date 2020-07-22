@@ -8,18 +8,21 @@ import com.gahlot.wikipediaapi.api.BASE_URL
 import com.gahlot.wikipediaapi.api.WikipediaNetwork
 import com.gahlot.wikipediaapi.data.Page
 import com.gahlot.wikipediaapi.data.Wiki_DCO
+import com.gahlot.wikipediaapi.db.AppDatabase
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 class SearchActivityRepository(val application: Application) {
 
     private val TAG = "SearchActivityRepositor"
     val showProgress = MutableLiveData<Boolean>()
     val searchResults = MutableLiveData<List<Page>>()
+    private lateinit var appDatabase: AppDatabase
 
     fun changeState() {
         showProgress.value = !(showProgress.value != null && showProgress.value!!)
@@ -44,7 +47,6 @@ class SearchActivityRepository(val application: Application) {
                 showProgress.value = false
                 Log.d(TAG, "onResponse: ${Gson().toJson(response.body())}")
             }
-
         })
     }
 
