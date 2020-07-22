@@ -9,4 +9,7 @@
     <color name="textHintColor">#dbdbdb</color>
     <color name="containerBackground">#574a4a</color>
 
+    <color name="textBlack">#000000</color>
+    <color name="subTextColor">#666363</color>
+
 </resources>

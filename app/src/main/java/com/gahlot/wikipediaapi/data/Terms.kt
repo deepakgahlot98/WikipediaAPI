@@ -1,5 +1,6 @@
 package com.gahlot.wikipediaapi.data
 
+
 import com.google.gson.annotations.SerializedName
 
 data class Terms(

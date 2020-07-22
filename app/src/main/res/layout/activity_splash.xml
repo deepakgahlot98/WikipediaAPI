@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".view.SplashActivity">
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:maxLines="1"
-        android:textColor=""
+        android:src="@drawable/head3"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
