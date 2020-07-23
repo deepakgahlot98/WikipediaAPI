@@ -22,14 +22,13 @@ class SearchActivityRepository(val application: Application) {
     private val TAG = "SearchActivityRepositor"
     val showProgress = MutableLiveData<Boolean>()
     val searchResults = MutableLiveData<List<Page>>()
-    private lateinit var appDatabase: AppDatabase
 
     fun changeState() {
         showProgress.value = !(showProgress.value != null && showProgress.value!!)
     }
 
     fun searchWikipedia(searchString: String) {
-        showProgress.value = true
+        showProgress.postValue(true)
 
         val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create()).build()

@@ -1,17 +1,18 @@
 package com.gahlot.wikipediaapi.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.KeyEvent
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gahlot.wikipediaapi.R
 import com.gahlot.wikipediaapi.adapter.SearchResultAdapter
 import com.gahlot.wikipediaapi.viewmodel.SearchActivityViewModel
 import kotlinx.android.synthetic.main.activity_search.*
+import kotlinx.coroutines.*
+
 
 class SearchActivity : AppCompatActivity() {
 
@@ -48,6 +49,10 @@ class SearchActivity : AppCompatActivity() {
         // using a text watcher to show the search result based on the user input
         et_search.addTextChangedListener(object : TextWatcher {
 
+            private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
+
+            private var searchJob: Job? = null
+
             override fun afterTextChanged(s: Editable) {}
 
             override fun beforeTextChanged(s: CharSequence, start: Int,
@@ -56,13 +61,22 @@ class SearchActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
-                if (s.length > 2) {
-                    viewModel.searchWikipedia(s.toString())
-                } else if (s.isEmpty()) {
+                if (s.isNotEmpty()) {
+                    searchJob?.cancel()
+                    searchJob = coroutineScope.launch {
+                        s?.let {
+                            delay(500)
+                            if (it.isNotEmpty()) {
+                                viewModel.searchWikipedia(it.toString())
+                            }
+                        }
+                    }
+                } else {
                     adapter.resetList()
                 }
             }
         })
+
 
     }
 }
